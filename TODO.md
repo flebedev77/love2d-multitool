@@ -1,0 +1,2 @@
+ - Some sort of progress display
+ - Love2d game obfuscation, nothing fancy but so that it is not a single unzip command
