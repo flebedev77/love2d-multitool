@@ -34,6 +34,7 @@ void extract(char* game_path, char* output_path)
   for (size_t i = 0; i < game_file.len; i++)
   {
     // Zip file magic number check
+    // This magic number happens every zip entry, so check for first one
     if (
         !zip_found &&
         game_file.data[i]   == 0x50 && 
@@ -66,11 +67,11 @@ void extract(char* game_path, char* output_path)
   printf("Finished in-memory copy, writing final file to: %s - %ld\n", output_path, zip_length);
   writeFile(output_path, zip_content, zip_length);
 
-  // free(game_file.data);
-  // if (zip_content != 0)
-  // {
-  //   free(zip_content);
-  // }
+  free(game_file.data);
+  if (zip_content != 0)
+  {
+    free(zip_content);
+  }
 
   printf("Done!\n");
 }
